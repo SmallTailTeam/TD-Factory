@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Desktop", "SmallTail.TdFactory.Desktop\SmallTail.TdFactory.Desktop.csproj", "{76FC5142-4414-465D-B0FB-F6493CA5F4F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Game", "SmallTail.TdFactory.Game\SmallTail.TdFactory.Game.csproj", "{9973A6AF-561D-478F-B3B0-475B614CF51A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Api", "SmallTail.TdFactory.Api\SmallTail.TdFactory.Api.csproj", "{7155B2FB-2F23-4033-B88C-9DCF152671B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{76FC5142-4414-465D-B0FB-F6493CA5F4F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76FC5142-4414-465D-B0FB-F6493CA5F4F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FC5142-4414-465D-B0FB-F6493CA5F4F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9973A6AF-561D-478F-B3B0-475B614CF51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9973A6AF-561D-478F-B3B0-475B614CF51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9973A6AF-561D-478F-B3B0-475B614CF51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9973A6AF-561D-478F-B3B0-475B614CF51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

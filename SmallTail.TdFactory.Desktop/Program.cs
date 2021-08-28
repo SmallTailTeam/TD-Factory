@@ -11,7 +11,7 @@ namespace SmallTail.TdFactory.Desktop
                 .WriteTo.Console()
                 .CreateLogger();
             
-            using GameHeart game = new ();
+            using GameCore game = new ();
             game.Run();
         }
     }

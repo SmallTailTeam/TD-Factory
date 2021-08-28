@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SmallTail.TdFactory.Core
+namespace SmallTail.TdFactory.Core.States
 {
     public abstract class GameState
     {
-        public virtual void Initialize(GameHeart game)
+        public virtual void Initialize(GameCore game)
         {
             
         }

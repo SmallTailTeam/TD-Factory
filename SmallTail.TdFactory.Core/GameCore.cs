@@ -1,40 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SmallTail.TdFactory.Core.Modding;
+using Serilog;
+using SmallTail.TdFactory.Core.States;
 
 namespace SmallTail.TdFactory.Core
 {
-    public class GameHeart : Game
+    public class GameCore : Game
     {
         private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private GameState _state;
 
-        public GameHeart()
+        public GameCore()
         {
             _graphicsDeviceManager = new GraphicsDeviceManager(this);
         }
 
         public void SetState(GameState state)
         {
-            state.Initialize(this);
+            Log.Information("Game state changed to {0}", state);
             
             _state = state;
+            
+            state.Initialize(this);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            SetState(new ModLoadingState());
-
-            base.LoadContent();
+            
+            SetState(new InitializationState());
         }
 
         protected override void Update(GameTime gameTime)
         {
             _state.Update(gameTime);
-            
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -44,8 +44,6 @@ namespace SmallTail.TdFactory.Core
             _state.Draw(_spriteBatch, gameTime);
             
             _spriteBatch.End();
-            
-            base.Draw(gameTime);
         }
     }
 }

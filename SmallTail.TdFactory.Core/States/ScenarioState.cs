@@ -1,12 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SmallTail.TdFactory.Core;
 
-namespace SmallTail.TdFactory.Game
+namespace SmallTail.TdFactory.Core.States
 {
-    public class TestingGameState : GameState
+    public class ScenarioState : GameState
     {
-        public override void Initialize(GameHeart game)
+        public override void Initialize(GameCore game)
+        {
+            
+        }
+
+        public override void Update(GameTime gameTime)
         {
             
         }

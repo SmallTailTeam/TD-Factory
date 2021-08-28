@@ -9,4 +9,8 @@
       <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1-dev-00876" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SmallTail.TdFactory.Api\SmallTail.TdFactory.Api.csproj" />
+    </ItemGroup>
+
 </Project>
