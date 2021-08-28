@@ -1,10 +1,10 @@
-﻿namespace SmallTail.TdFactory.Core.States
+﻿namespace SmallTail.TdFactory.Game.States
 {
     public class MenuState : GameState
     {
         public override void Initialize(GameCore game)
         {
-            game.SetState(new ScenarioState());
+            game.SetState(new GameplayState());
         }
     }
 }

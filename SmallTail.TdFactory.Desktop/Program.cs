@@ -1,5 +1,5 @@
 ﻿using Serilog;
-using SmallTail.TdFactory.Core;
+using SmallTail.TdFactory.Game;
 
 namespace SmallTail.TdFactory.Desktop
 {

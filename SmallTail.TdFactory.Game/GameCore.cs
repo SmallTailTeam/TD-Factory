@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Serilog;
-using SmallTail.TdFactory.Core.States;
+using SmallTail.TdFactory.Game.States;
 
-namespace SmallTail.TdFactory.Core
+namespace SmallTail.TdFactory.Game
 {
-    public class GameCore : Game
+    public class GameCore : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;

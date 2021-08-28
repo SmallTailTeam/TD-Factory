@@ -1,10 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Core", "SmallTail.TdFactory.Core\SmallTail.TdFactory.Core.csproj", "{A4B4CA75-ABC5-4263-A333-FE93FCE124AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Game", "SmallTail.TdFactory.Game\SmallTail.TdFactory.Game.csproj", "{A4B4CA75-ABC5-4263-A333-FE93FCE124AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Desktop", "SmallTail.TdFactory.Desktop\SmallTail.TdFactory.Desktop.csproj", "{76FC5142-4414-465D-B0FB-F6493CA5F4F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Api", "SmallTail.TdFactory.Api\SmallTail.TdFactory.Api.csproj", "{7155B2FB-2F23-4033-B88C-9DCF152671B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Core", "SmallTail.TdFactory.Core\SmallTail.TdFactory.Core.csproj", "{7155B2FB-2F23-4033-B88C-9DCF152671B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runners", "Runners", "{3A45644A-979F-4214-A178-E042829E542A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Generator", "SmallTail.TdFactory.Generator\SmallTail.TdFactory.Generator.csproj", "{4D963390-1B37-4958-8EBD-100A45E660A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +28,12 @@ Global
 		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7155B2FB-2F23-4033-B88C-9DCF152671B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D963390-1B37-4958-8EBD-100A45E660A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D963390-1B37-4958-8EBD-100A45E660A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D963390-1B37-4958-8EBD-100A45E660A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D963390-1B37-4958-8EBD-100A45E660A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76FC5142-4414-465D-B0FB-F6493CA5F4F1} = {3A45644A-979F-4214-A178-E042829E542A}
 	EndGlobalSection
 EndGlobal

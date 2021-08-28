@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SmallTail.TdFactory.Core\SmallTail.TdFactory.Core.csproj" />
+      <ProjectReference Include="..\SmallTail.TdFactory.Game\SmallTail.TdFactory.Game.csproj" />
     </ItemGroup>
 
 </Project>
