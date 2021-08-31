@@ -9,4 +9,10 @@
       <ProjectReference Include="..\SmallTail.TdFactory.Game\SmallTail.TdFactory.Game.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\External\Facepunch.Steamworks.Win64.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
-﻿using Serilog;
-using SmallTail.TdFactory.Game;
+﻿using SmallTail.TdFactory.Game;
 
 namespace SmallTail.TdFactory.Desktop
 {
@@ -7,12 +6,8 @@ namespace SmallTail.TdFactory.Desktop
     {
         private static void Main()
         {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .CreateLogger();
-            
-            using GameCore game = new ();
-            game.Run();
+            GameDriver gameDriver = new ();
+            gameDriver.Run();
         }
     }
 }
