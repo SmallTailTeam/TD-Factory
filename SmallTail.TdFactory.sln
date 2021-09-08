@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Game", "SmallTail.TdFactory.Game\SmallTail.TdFactory.Game.csproj", "{A467DF9B-6EEC-45DB-AC30-7DF2F212C0AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Core", "SmallTail.TdFactory.Core\SmallTail.TdFactory.Core.csproj", "{A467DF9B-6EEC-45DB-AC30-7DF2F212C0AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTail.TdFactory.Desktop", "SmallTail.TdFactory.Desktop\SmallTail.TdFactory.Desktop.csproj", "{10B0CDAE-B5C1-4663-8575-12A963860B70}"
 EndProject

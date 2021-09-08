@@ -1,4 +1,4 @@
-﻿using SmallTail.TdFactory.Game;
+﻿using SmallTail.TdFactory.Core;
 
 namespace SmallTail.TdFactory.Desktop
 {
@@ -6,8 +6,7 @@ namespace SmallTail.TdFactory.Desktop
     {
         private static void Main()
         {
-            GameDriver gameDriver = new ();
-            gameDriver.Run();
+            Game game = new (new TestingState());
         }
     }
 }
