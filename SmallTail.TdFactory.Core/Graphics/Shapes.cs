@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace SmallTail.TdFactory.Core.Graphics
+namespace TdFactory.Core.Graphics
 {
     public static class Shapes
     {

@@ -1,6 +1,6 @@
-﻿using SmallTail.TdFactory.Core;
+﻿using TdFactory.Core;
 
-namespace SmallTail.TdFactory.Desktop
+namespace TdFactory.Desktop
 {
     internal static class Program
     {

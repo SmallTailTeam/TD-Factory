@@ -1,4 +1,4 @@
-﻿namespace SmallTail.TdFactory.Core
+﻿namespace TdFactory.Core
 {
     public abstract class GameState
     {

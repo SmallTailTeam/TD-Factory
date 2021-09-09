@@ -1,8 +1,9 @@
 ﻿using System;
 using SFML.Graphics;
 using SFML.Window;
+using TdFactory.Core.Graphics;
 
-namespace SmallTail.TdFactory.Core
+namespace TdFactory.Core
 {
     public class Game
     {
@@ -12,7 +13,11 @@ namespace SmallTail.TdFactory.Core
 
         public Game(GameState state)
         {
+            Window = new RenderWindow(VideoMode.DesktopMode, "TD Factory");
+            Camera.Current = Window.GetView();
+            
             ChangeState(state);
+            
             Run();
         }
         
@@ -24,8 +29,6 @@ namespace SmallTail.TdFactory.Core
         
         private void Run()
         {
-            Window = new RenderWindow(VideoMode.DesktopMode, "TD Factory");
-
             Window.Closed += (_, _) =>
             {
                 Window.Close();
@@ -54,6 +57,7 @@ namespace SmallTail.TdFactory.Core
         private void Update(float dt)
         {
             _state.Update(dt);
+            Window.SetView(Camera.Current);
         }
 
         private void Render(float dt)
