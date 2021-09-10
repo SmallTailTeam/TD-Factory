@@ -7,7 +7,7 @@ namespace TdFactory.Core
 {
     public class Game
     {
-        public RenderWindow Window;
+        public static RenderWindow Window;
         
         private GameState _state;
 
@@ -15,7 +15,7 @@ namespace TdFactory.Core
         {
             Window = new RenderWindow(VideoMode.DesktopMode, "TD Factory");
             Camera.Current = Window.GetView();
-            
+
             ChangeState(state);
             
             Run();
@@ -36,12 +36,23 @@ namespace TdFactory.Core
 
             DateTime lastUpdate = DateTime.Now;
 
+            const float computeRate = 1f / 50f;
+            float computeTimer = 0f;
+
             while (Window.IsOpen)
             {
                 TimeSpan dt = DateTime.Now - lastUpdate;
                 lastUpdate = DateTime.Now;
 
                 float castedDt = (float) dt.TotalSeconds;
+                
+                computeTimer += castedDt;
+
+                if (computeTimer >= computeRate)
+                {
+                    Compute(castedDt, computeRate);
+                    computeTimer = 0f;
+                }
                 
                 Update(castedDt);
                     
@@ -53,10 +64,15 @@ namespace TdFactory.Core
             }
         }
 
+        private void Compute(float dt, float fixedDt)
+        {
+            _state.Compute(dt, fixedDt);
+        }
         
         private void Update(float dt)
         {
             _state.Update(dt);
+            
             Window.SetView(Camera.Current);
         }
 

@@ -6,7 +6,7 @@ using TdFactory.Core.Graphics;
 
 namespace TdFactory.Core
 {
-    public class Player
+    public class Player : IComputer
     {
         public Sprite Sprite;
         public float Speed = 450f;
@@ -15,8 +15,13 @@ namespace TdFactory.Core
         {
             Sprite = new Sprite
             {
-                Texture = Shapes.Square(128, 128, Color.Magenta)
+                Texture = Shapes.Square(60, 60, Color.Magenta)
             };
+        }
+
+        public void Compute(float dt, float fixedDt)
+        {
+            
         }
         
         public void Update(float dt)

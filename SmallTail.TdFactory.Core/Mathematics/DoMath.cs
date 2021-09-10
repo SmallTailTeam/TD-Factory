@@ -2,7 +2,7 @@
 
 namespace TdFactory.Core.Mathematics
 {
-    public static class Calc
+    public static class DoMath
     {
         public static int RoundToInt(float x)
         {

@@ -4,6 +4,8 @@ namespace TdFactory.Core.Graphics
 {
     public static class Shapes
     {
+        public static Texture Dot = Square(1, 1, Color.White);
+        
         public static Texture Square(uint width, uint height, Color color)
         {
             Image square = new (width, height);

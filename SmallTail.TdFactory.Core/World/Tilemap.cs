@@ -1,44 +1,43 @@
-﻿using SFML.System;
-using TdFactory.Core.Mathematics;
+﻿using TdFactory.Core.World.Tiles;
 
 namespace TdFactory.Core.World
 {
-    public class Tilemap
+    public class Tilemap : ITilemap
     {
-        public Chunk[,] Chunks = new Chunk[WorldRules.RENDER_DISTANCE * 2, WorldRules.RENDER_DISTANCE * 2];
+        private Tile[,] _tiles;
 
-        public void UpdateVisibleChunks(Vector2f position)
+        public Tilemap()
         {
-            for (int x = -WorldRules.RENDER_DISTANCE; x < WorldRules.RENDER_DISTANCE; x++)
+            _tiles = new Tile[Universe.Size, Universe.Size];
+
+            for (int x = -Universe.HalfSize; x < Universe.HalfSize; x++)
             {
-                for (int y = -WorldRules.RENDER_DISTANCE; y < WorldRules.RENDER_DISTANCE; y++)
+                for (int y = -Universe.HalfSize; y < Universe.HalfSize; y++)
                 {
-                    Vector2i chunkPosition = new (
-                        Calc.RoundToInt(position.X / WorldRules.CHUNK_SIZE / WorldRules.TILE_SIZE) + x,
-                        Calc.RoundToInt(position.Y/ WorldRules.CHUNK_SIZE / WorldRules.TILE_SIZE) + y
-                        );
-
-                    Chunk chunk = GetChunkAt(chunkPosition);
-
-                    if (chunk == null)
-                    {
-                        Chunks[x + WorldRules.RENDER_DISTANCE, y + WorldRules.RENDER_DISTANCE] = new Chunk(chunkPosition);
-                    }
+                    _tiles[x + Universe.HalfSize, y + Universe.HalfSize] = new Tile(x, y);
                 }
             }
         }
 
-        public Chunk GetChunkAt(Vector2i position)
+        public void Compute(float dt, float fixedDt)
         {
-            foreach (Chunk chunk in Chunks)
+            foreach (Tile tile in _tiles)
             {
-                if (chunk != null && chunk.Position == position)
-                {
-                    return chunk;
-                }
+                tile.Compute(dt, fixedDt);
             }
-            
-            return null;
+        }
+        
+        public void Render(float dt)
+        {
+            foreach (Tile tile in _tiles)
+            {
+                tile.Render(dt);
+            }
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            return _tiles[x + Universe.HalfSize, y + Universe.HalfSize];
         }
     }
 }
