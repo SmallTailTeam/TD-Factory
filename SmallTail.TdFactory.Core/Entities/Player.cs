@@ -3,11 +3,15 @@ using SFML.System;
 using SFML.Window;
 using TdFactory.Core.Mathematics;
 using TdFactory.Core.Graphics;
+using TdFactory.Core.System;
+using TdFactory.Core.World;
+using TdFactory.Core.World.Tiles;
 
-namespace TdFactory.Core
+namespace TdFactory.Core.Entities
 {
-    public class Player : IComputer
+    public class Player : IComputer, IUpdater
     {
+        public Inventory Inventory = new(20);
         public Sprite Sprite;
         public float Speed = 450f;
 
@@ -27,6 +31,7 @@ namespace TdFactory.Core
         public void Update(float dt)
         {
             Move(dt);
+            Interact();
             
             Camera.Current.Center = Sprite.Position;
         }
@@ -57,6 +62,19 @@ namespace TdFactory.Core
                 movement = movement.Normalized();
 
                 Sprite.Position += movement * dt * Speed;
+            }
+        }
+
+        private void Interact()
+        {
+            Vector2i mousePos = Mouse.GetPosition(Game.Window);
+            Vector2f worldPos = Game.Window.MapPixelToCoords(mousePos);
+
+            Tile tile = Universe.Tilemap.GetTile(worldPos);
+
+            if (Mouse.IsButtonPressed(Mouse.Button.Left) && (tile.Floor.Sprite.Position - Sprite.Position).Length() < 200f)
+            {
+                tile.Main?.Interact(this);
             }
         }
     }

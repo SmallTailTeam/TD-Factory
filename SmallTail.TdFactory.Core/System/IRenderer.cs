@@ -1,4 +1,4 @@
-﻿namespace TdFactory.Core
+﻿namespace TdFactory.Core.System
 {
     public interface IRenderer
     {

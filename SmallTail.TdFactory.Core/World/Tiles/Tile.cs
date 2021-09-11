@@ -1,11 +1,14 @@
-﻿using SFML.Graphics;
-using SFML.System;
+﻿using SFML.System;
+using TdFactory.Core.System;
+using TdFactory.Core.World.Tiles.Placements;
 
 namespace TdFactory.Core.World.Tiles
 {
-    public class Tile : IComputer, IRenderer
+    public class Tile : IComputer
     {
-        public Sprite Sprite;
+        public Placement Floor;
+        public Placement Main;
+        public Placement Roof;
         public int X;
         public int Y;
         public int Elevation;
@@ -15,17 +18,40 @@ namespace TdFactory.Core.World.Tiles
             X = x;
             Y = y;
 
-            Sprite = new Sprite
-            {
-                Position = new Vector2f(x * Universe.TileSize, y * Universe.TileSize)
-            };
+            PlaceFloor(new GrassPlacement());
+        }
+
+        public void PlaceFloor(Placement floor)
+        {
+            floor.Tile = this;
+            floor.Initialize();
+            floor.Sprite.Position = new Vector2f(X * Universe.TileSize, Y * Universe.TileSize);
+            Floor = floor;
         }
         
-        public virtual void Compute(float dt, float fixedDt) {}
-
-        public virtual void Render(float dt)
+        
+        public void PlaceMain(Placement main)
         {
-            Game.Window.Draw(Sprite);
+            main.Tile = this;
+            main.Initialize();
+            main.Sprite.Position = new Vector2f(X * Universe.TileSize, Y * Universe.TileSize);
+            Main = main;
+        }
+        
+        
+        public void PlaceRoof(Placement roof)
+        {
+            roof.Tile = this;
+            roof.Initialize();
+            roof.Sprite.Position = new Vector2f(X * Universe.TileSize, Y * Universe.TileSize);
+            Roof = roof;
+        }
+
+        public virtual void Compute(float dt, float fixedDt)
+        {
+            Floor?.Compute(dt, fixedDt);
+            Main?.Compute(dt, fixedDt);
+            Roof?.Compute(dt, fixedDt);
         }
     }
 }

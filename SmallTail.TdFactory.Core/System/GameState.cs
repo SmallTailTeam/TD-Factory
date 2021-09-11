@@ -1,6 +1,6 @@
-﻿namespace TdFactory.Core
+﻿namespace TdFactory.Core.System
 {
-    public abstract class GameState
+    public abstract class GameState : IComputer, IUpdater, IRenderer
     {
         public virtual void Initialize(Game game) {}
         

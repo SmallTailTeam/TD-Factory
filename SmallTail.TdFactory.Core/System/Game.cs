@@ -3,7 +3,7 @@ using SFML.Graphics;
 using SFML.Window;
 using TdFactory.Core.Graphics;
 
-namespace TdFactory.Core
+namespace TdFactory.Core.System
 {
     public class Game
     {
@@ -15,6 +15,7 @@ namespace TdFactory.Core
         {
             Window = new RenderWindow(VideoMode.DesktopMode, "TD Factory");
             Camera.Current = Window.GetView();
+            Window.SetFramerateLimit(144);
 
             ChangeState(state);
             
