@@ -5,7 +5,7 @@ namespace TdFactory.System.Inventories
 {
     public static class Items
     {
-        public static Item Planks = new Item()
+        public static Item Planks = new Item
         {
             StackSize = 30,
             Sprite = Resources.Load<Sprite>("Items/Planks"),

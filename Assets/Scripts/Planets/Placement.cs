@@ -7,10 +7,11 @@ namespace TdFactory.Planets
     {
         public Action CleanedUp { get; set; }
         
-        public Tile MainTile;
-        public Tile[] Tiles;
+        public Tile ParentTile;
 
         public virtual void Initialize() {}
+        
+        public virtual void PhysicsTick() {}
         
         public virtual void Tick() {}
 

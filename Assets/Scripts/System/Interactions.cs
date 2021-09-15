@@ -11,7 +11,8 @@ namespace TdFactory.System
     public struct Interaction
     {
         public static Interaction Identity = new Interaction(null, InteractionType.Primary);
-        
+        private static Func<bool> Always = () => true;
+
         public Entity Interactor;
         public InteractionType Type;
 
@@ -27,9 +28,14 @@ namespace TdFactory.System
             Type = type;
         }
 
-        public Interaction Primary<T>(Action<T> interact) where T : Entity
+        public Interaction Primary<T>(Action<T> interact, Func<bool> test = null) where T : Entity
         {
-            if (Type == InteractionType.Primary && Interactor is T target)
+            if (test == null)
+            {
+                test = Always;
+            }
+            
+            if (test() && Type == InteractionType.Primary && Interactor is T target)
             {
                 interact(target);
             }
@@ -37,9 +43,14 @@ namespace TdFactory.System
             return this;
         }
 
-        public Interaction Secondary<T>(Action<T> interact) where T : Entity
+        public Interaction Secondary<T>(Action<T> interact, Func<bool> test = null) where T : Entity
         {
-            if (Type == InteractionType.Secondary && Interactor is T target)
+            if (test == null)
+            {
+                test = Always;
+            }
+            
+            if (test() && Type == InteractionType.Secondary && Interactor is T target)
             {
                 interact(target);
             }

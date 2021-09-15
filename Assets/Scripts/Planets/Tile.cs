@@ -38,9 +38,16 @@ namespace TdFactory.Planets
             place?.CleanUp();
 
             place = new T();
-            place.MainTile = this;
+            place.ParentTile = this;
             
             place.Initialize();
+        }
+
+        private void FixedUpdate()
+        {
+            _ground?.PhysicsTick();
+            _thing?.PhysicsTick();
+            _ceiling?.PhysicsTick();
         }
 
         private void Update()
@@ -63,6 +70,11 @@ namespace TdFactory.Planets
             {
                 placement.Interact(interaction);
             }
+        }
+
+        public static float Distance(int tileCount)
+        {
+            return tileCount * World.TILE_SIZE;
         }
     }
 }

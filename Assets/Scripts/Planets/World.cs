@@ -1,4 +1,4 @@
-using TdFactory.Planets.Placables;
+using TdFactory.Planets.Placements;
 using UnityEngine;
 
 namespace TdFactory.Planets
@@ -55,8 +55,10 @@ namespace TdFactory.Planets
                 }
             }
             
+            // BaseCore:
+            Tiles[HALF_SIZE, HALF_SIZE].SetThing<BaseCorePlacement>();
             // Workbench:
-            Tiles[HALF_SIZE, HALF_SIZE].SetThing<WorkbenchPlacement>();
+            Tiles[HALF_SIZE + 1, HALF_SIZE].SetThing<WorkbenchPlacement>();
         }
 
         public Tile GetTile(int x, int y)

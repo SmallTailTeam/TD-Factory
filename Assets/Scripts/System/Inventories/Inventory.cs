@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace TdFactory.System.Inventories
 {
@@ -12,6 +13,11 @@ namespace TdFactory.System.Inventories
         public Inventory(int slotCount)
         {
             Slots = new ItemStack[slotCount];
+
+            for (int i = 0; i < slotCount; i++)
+            {
+                Slots[i] = new ItemStack(null);
+            }
         }
 
         public void AddItem(Item item)
@@ -20,10 +26,9 @@ namespace TdFactory.System.Inventories
             
             for (int i = 0; i < SlotCount; i++)
             {
-                itemStack = Slots[i];
-
-                if (itemStack != null && itemStack.Item == item && !itemStack.IsFull)
+                if (Slots[i].Item == item && !Slots[i].IsFull)
                 {
+                    itemStack = Slots[i];
                     break;
                 }
             }
@@ -36,9 +41,9 @@ namespace TdFactory.System.Inventories
                 {
                     return;
                 }
-                
-                itemStack = new ItemStack(item);
-                Slots[freeSlot] = itemStack;
+
+                itemStack = Slots[freeSlot];
+                itemStack.Item = item;
             }
 
             itemStack.Count++;
@@ -60,7 +65,7 @@ namespace TdFactory.System.Inventories
         {
             for (int i = 0; i < SlotCount; i++)
             {
-                if (Slots[i] == null)
+                if (Slots[i].Item == null)
                 {
                     return i;
                 }

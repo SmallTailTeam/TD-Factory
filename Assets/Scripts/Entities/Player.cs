@@ -1,4 +1,5 @@
-﻿using TdFactory.System.Inventories;
+﻿using System;
+using TdFactory.System.Inventories;
 using TdFactory.System;
 using UnityEngine;
 
@@ -6,9 +7,16 @@ namespace TdFactory.Entities
 {
     public class Player : Entity
     {
+        public static Player My;
+        
         [SerializeField] private float _movementSpeed;
 
         public Inventory Inventory = new Inventory(10);
+
+        private void Awake()
+        {
+            My = this;
+        }
 
         private void Update()
         {
@@ -39,7 +47,7 @@ namespace TdFactory.Entities
 
             if (interaction != Interaction.Identity)
             {
-                Vector3 point = Camera.current.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
                 
                 if (hit.collider != null)
