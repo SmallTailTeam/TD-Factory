@@ -10,7 +10,7 @@ namespace TdFactory.Planets.Placements
         private WindowManager _windowManager;
         
         private GameObject _graphics;
-        private Window _craftingWindow;
+        private WorkbenchWindow _craftingWindow;
         
         public override void Initialize()
         {
@@ -53,7 +53,7 @@ namespace TdFactory.Planets.Placements
 
         private bool CanOpen()
         {
-            return Vector3.Distance(Player.My.transform.position, ParentTile.transform.position) <= Tile.Distance(3);
+            return Vector3.Distance(Player.Me.transform.position, ParentTile.transform.position) <= Tile.Distance(3);
         }
 
         private void Open(Player player)
@@ -64,7 +64,7 @@ namespace TdFactory.Planets.Placements
             }
             else
             {
-                _craftingWindow = _windowManager.Create("Crafting");
+                _craftingWindow = _windowManager.Create<WorkbenchWindow>("Workbench");
             }
         }
     }

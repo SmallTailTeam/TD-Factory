@@ -1,5 +1,5 @@
 ﻿using System;
-using TdFactory.System.Inventories;
+using TdFactory.System.Items;
 using TdFactory.System;
 using UnityEngine;
 
@@ -7,15 +7,15 @@ namespace TdFactory.Entities
 {
     public class Player : Entity
     {
-        public static Player My;
+        public static Player Me;
         
         [SerializeField] private float _movementSpeed;
 
-        public Inventory Inventory = new Inventory(10);
+        public Inventory Inventory = new Inventory(20);
 
         private void Awake()
         {
-            My = this;
+            Me = this;
         }
 
         private void Update()

@@ -1,7 +1,7 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
 
-namespace TdFactory.System.Inventories
+namespace TdFactory.System.Items
 {
     public class Inventory
     {
@@ -35,7 +35,7 @@ namespace TdFactory.System.Inventories
 
             if (itemStack == null)
             {
-                int freeSlot = FindFreeSlot();
+                int freeSlot = GetFirstFreeSlot();
 
                 if (freeSlot == -1)
                 {
@@ -50,7 +50,62 @@ namespace TdFactory.System.Inventories
             
             ItemAdded?.Invoke(item);
         }
+
+        public void RemoveItem(Item item, int count = 1)
+        {
+            IEnumerable<ItemStack> itemSlots = GetAllItemSlots(item);
+
+            foreach (ItemStack itemStack in itemSlots)
+            {
+                if (count == 0)
+                {
+                    return;
+                }
+                
+                if (count >= itemStack.Count)
+                {
+                    count -= itemStack.Count;
+                    itemStack.Count = 0;
+                }
+                else
+                {
+                    itemStack.Count -= count;
+                    count = 0;
+                }
+            }
+        }
         
+        public bool HasItem(Item item, int count = 1)
+        {
+            int found = 0;
+
+            foreach (ItemStack itemStack in Slots)
+            {
+                if (itemStack.Item == item)
+                {
+                    found += itemStack.Count;
+
+                    if (found >= count)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public IEnumerable<ItemStack> GetAllItemSlots(Item item)
+        {
+            foreach (ItemStack itemStack in Slots)
+            {
+                if (itemStack.Item == item)
+                {
+                    yield return itemStack;
+                }
+            }
+        }
+
         public ItemStack GetSlot(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= Slots.Length)
@@ -61,7 +116,7 @@ namespace TdFactory.System.Inventories
             return Slots[slotIndex];
         }
 
-        public int FindFreeSlot()
+        public int GetFirstFreeSlot()
         {
             for (int i = 0; i < SlotCount; i++)
             {

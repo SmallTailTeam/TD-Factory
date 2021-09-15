@@ -1,6 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
 
-namespace TdFactory.System.Inventories
+namespace TdFactory.System.Items
 {
     public class ItemStack
     {
@@ -14,6 +15,12 @@ namespace TdFactory.System.Inventories
             set
             {
                 _count = value;
+
+                if (_count <= 0)
+                {
+                    Item = null;
+                }
+                
                 CountChanged?.Invoke();
             } 
         }

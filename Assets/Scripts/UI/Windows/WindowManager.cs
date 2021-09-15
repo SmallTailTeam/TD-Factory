@@ -4,13 +4,13 @@ namespace TdFactory.UI.Windows
 {
     public class WindowManager : MonoBehaviour
     {
-        public Window Create(string windowName)
+        public T Create<T>(string windowName) where T : Window
         {
             Window prefab = Resources.Load<Window>($"UI/Windows/{windowName}/Root");
             
             Window instance = Instantiate(prefab, transform);
             
-            return instance;
+            return instance as T;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using TdFactory.System.Inventories;
+﻿using TdFactory.System.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,8 +19,14 @@ namespace TdFactory.UI.HUD
         {
             if (itemStack.Item != null)
             {
+                _iconImage.color = new Color(1, 1, 1, 1);
                 _iconImage.sprite = itemStack.Item.Sprite;
                 _countText.text = itemStack.Count.ToString();
+            }
+            else
+            {
+                _iconImage.color = new Color(0, 0, 0, 0);
+                _countText.text = "";
             }
         }
     }

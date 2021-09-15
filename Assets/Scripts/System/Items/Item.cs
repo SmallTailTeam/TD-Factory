@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using TdFactory.System.Items.Crafting;
 using UnityEngine;
 
-namespace TdFactory.System.Inventories
+namespace TdFactory.System.Items
 {
     public class Item
     {
+        public string Id { get; set; }
         public int StackSize { get; set; }
         public Sprite Sprite { get; set; }
         public List<ItemTag> Tags { get; set; } = new List<ItemTag>();
+        public ItemCraft ItemCraft { get; set; } = null;
 
         public bool HasTag(string tagName)
         {

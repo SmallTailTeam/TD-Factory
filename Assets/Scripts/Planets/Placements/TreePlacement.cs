@@ -1,5 +1,5 @@
 ﻿using TdFactory.Entities;
-using TdFactory.System.Inventories;
+using TdFactory.System.Items;
 using TdFactory.System;
 using UnityEngine;
 
@@ -35,7 +35,7 @@ namespace TdFactory.Planets.Placements
 
         private void Harvest(Player player)
         {
-            player.Inventory.AddItem(Items.Planks);
+            player.Inventory.AddItem(ItemDefs.Find("TdFactory/Planks"));
             CleanUp();
         }
     }

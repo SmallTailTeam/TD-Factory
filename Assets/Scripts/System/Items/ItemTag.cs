@@ -1,4 +1,4 @@
-﻿namespace TdFactory.System.Inventories
+﻿namespace TdFactory.System.Items
 {
     public class ItemTag
     {
