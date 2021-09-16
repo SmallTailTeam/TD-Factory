@@ -7,7 +7,7 @@ namespace TdFactory.Planets
     {
         public const int SIZE = 100;
         public const int HALF_SIZE = SIZE / 2;
-        public const float TILE_SIZE = 1f;
+        public const float TILE_SIZE = 0.8f;
 
         public Tile[,] Tiles = new Tile[SIZE, SIZE];
         

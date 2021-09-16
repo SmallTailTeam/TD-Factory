@@ -19,6 +19,7 @@ namespace TdFactory.Planets.Placements
             _graphics = new GameObject();
             _graphics.transform.parent = ParentTile.transform;
             _graphics.transform.localPosition = Vector3.zero;
+            _graphics.transform.localScale = Vector3.one;
 
             SpriteRenderer spriteRenderer = _graphics.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = Resources.Load<Sprite>("Tiles/Workbench");
@@ -28,6 +29,8 @@ namespace TdFactory.Planets.Placements
         public override void CleanUp()
         {
             Object.Destroy(_graphics);
+            
+            base.CleanUp();
         }
 
         public override void PhysicsTick()

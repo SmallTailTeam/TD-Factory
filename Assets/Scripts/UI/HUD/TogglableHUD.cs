@@ -3,7 +3,7 @@
 namespace TdFactory.UI.HUD
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class PlayerHUD : MonoBehaviour
+    public abstract class TogglableHUD : MonoBehaviour
     {
         private CanvasGroup _canvasGroup;
         

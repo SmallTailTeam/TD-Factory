@@ -1,4 +1,5 @@
-﻿using System;
+﻿using TdFactory.Planets;
+using TdFactory.Planets.Placements.Defenses;
 using TdFactory.System.Items;
 using TdFactory.System;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace TdFactory.Entities
         [SerializeField] private float _movementSpeed;
 
         public Inventory Inventory = new Inventory(20);
+        public ItemStack HeldItem;
 
         private void Awake()
         {
@@ -22,6 +24,7 @@ namespace TdFactory.Entities
         {
             Move();
             Interact();
+            Build();
         }
 
         private void Move()
@@ -49,16 +52,41 @@ namespace TdFactory.Entities
             {
                 Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
-                
-                if (hit.collider != null)
+
+                if (hit.collider.transform != null)
                 {
-                    MonoBehaviour[] components = hit.collider.GetComponents<MonoBehaviour>();
+                    MonoBehaviour[] components = hit.collider.transform.GetComponents<MonoBehaviour>();
 
                     foreach (MonoBehaviour component in components)
                     {
                         if (component is IInteractable interactable)
                         {
                             interactable.Interact(interaction);
+                        }
+                    }
+                }
+            }
+        }
+        
+        private void Build()
+        {
+            if (Input.GetMouseButtonDown(1) && HeldItem != null && HeldItem.Item == ItemDefs.Find("TdFactory/WoodenWall"))
+            {
+                Item item = ItemDefs.Find("TdFactory/WoodenWall");
+                
+                if (Inventory.HasItem(item))
+                {
+                    Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
+                    
+                    if (hit.collider.transform != null)
+                    {
+                        Tile tile = hit.collider.transform.GetComponent<Tile>();
+
+                        if (tile != null)
+                        {
+                            tile.SetThing<WoodenWallPlacement>();
+                            Inventory.RemoveItem(item);
                         }
                     }
                 }

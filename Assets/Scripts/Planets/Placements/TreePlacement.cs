@@ -14,8 +14,8 @@ namespace TdFactory.Planets.Placements
             _sprite = new GameObject();
             _sprite.transform.parent = ParentTile.transform;
             _sprite.transform.localPosition = new Vector3(-0.2f, 0.5f) + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
-            _sprite.transform.localScale = Vector3.one + new Vector3(Random.Range(0.2f, 0.6f), Random.Range(0.2f, 0.6f), 0);
-            
+            _sprite.transform.localScale = Vector3.one * 1.3f + new Vector3(Random.Range(0.2f, 0.6f), Random.Range(0.2f, 0.6f), 0);
+
             SpriteRenderer spriteRenderer = _sprite.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = Resources.Load<Sprite>($"Tiles/Tree_0{Random.Range(1, 5)}");
             spriteRenderer.sortingOrder = 1;

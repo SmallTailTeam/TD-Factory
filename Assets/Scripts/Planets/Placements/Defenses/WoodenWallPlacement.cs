@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace TdFactory.Planets.Placements
+namespace TdFactory.Planets.Placements.Defenses
 {
-    public class BaseCorePlacement : Placement
+    public class WoodenWallPlacement : Placement
     {
         private GameObject _graphics;
-        
+
         public override void Initialize()
         {
             _graphics = new GameObject();
@@ -14,13 +14,15 @@ namespace TdFactory.Planets.Placements
             _graphics.transform.localScale = Vector3.one;
 
             SpriteRenderer spriteRenderer = _graphics.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = Resources.Load<Sprite>("Tiles/BaseCore");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Items/WoodenWall");
             spriteRenderer.sortingOrder = 1;
         }
 
         public override void CleanUp()
         {
             Object.Destroy(_graphics);
+            
+            base.CleanUp();
         }
     }
 }
