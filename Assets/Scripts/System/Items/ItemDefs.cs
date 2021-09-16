@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TdFactory.Planets.Placements.Defenses;
 using TdFactory.System.Items.Crafting;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace TdFactory.System.Items
                     new ItemTag("BurnTime", 10)
                 }
             },
-            new Item
+            new ItemBuildable<WoodenWallPlacement>
             {
                 Id = "TdFactory/WoodenWall",
                 StackSize = 10,

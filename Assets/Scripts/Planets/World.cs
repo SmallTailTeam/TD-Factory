@@ -9,10 +9,14 @@ namespace TdFactory.Planets
         public const int HALF_SIZE = SIZE / 2;
         public const float TILE_SIZE = 0.8f;
 
+        public static World Current;
+        
         public Tile[,] Tiles = new Tile[SIZE, SIZE];
         
         private void Awake()
         {
+            Current = this;
+            
             GenerateMap();
         }
 

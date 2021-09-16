@@ -70,25 +70,15 @@ namespace TdFactory.Entities
         
         private void Build()
         {
-            if (Input.GetMouseButtonDown(1) && HeldItem != null && HeldItem.Item == ItemDefs.Find("TdFactory/WoodenWall"))
+            if (Input.GetMouseButtonDown(1) && HeldItem is {Item: IBuildable buildable})
             {
-                Item item = ItemDefs.Find("TdFactory/WoodenWall");
-                
-                if (Inventory.HasItem(item))
-                {
-                    Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
+                Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Tile tile = World.Current.GetTile(point);
                     
-                    if (hit.collider.transform != null)
-                    {
-                        Tile tile = hit.collider.transform.GetComponent<Tile>();
-
-                        if (tile != null)
-                        {
-                            tile.SetThing<WoodenWallPlacement>();
-                            Inventory.RemoveItem(item);
-                        }
-                    }
+                if (tile != null && tile.Thing == null)
+                {
+                    buildable.Build(tile);
+                    Inventory.RemoveItem(HeldItem.Item);
                 }
             }
         }
