@@ -12,7 +12,7 @@ namespace TdFactory.System.Items
         public int StackSize { get; set; }
         public Sprite Sprite { get; set; }
         public List<ItemTag> Tags { get; set; } = new List<ItemTag>();
-        public ItemCraft ItemCraft { get; set; } = null;
+        public ItemCraft Craft { get; set; } = null;
 
         public bool HasTag(string tagName)
         {

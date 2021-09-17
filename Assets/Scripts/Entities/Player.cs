@@ -1,5 +1,5 @@
-﻿using TdFactory.Planets;
-using TdFactory.Planets.Placements.Defenses;
+﻿using System;
+using TdFactory.Planets;
 using TdFactory.System.Items;
 using TdFactory.System;
 using UnityEngine;
@@ -10,10 +10,22 @@ namespace TdFactory.Entities
     {
         public static Player Me;
         
+        public Action<ItemStack> HeldItemChanged { get; set; }
+
         [SerializeField] private float _movementSpeed;
 
         public Inventory Inventory = new Inventory(20);
-        public ItemStack HeldItem;
+        public ItemStack HeldItem
+        {
+            get => _heldItem;
+            set
+            {
+                _heldItem = value;
+                HeldItemChanged?.Invoke(value);
+            }
+        }
+
+        private ItemStack _heldItem;
 
         private void Awake()
         {

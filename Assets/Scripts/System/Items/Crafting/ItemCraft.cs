@@ -11,12 +11,12 @@
 
         public static void Craft(Item item, Inventory inventory)
         {
-            if (item.ItemCraft == null)
+            if (item.Craft == null)
             {
                 return;
             }
 
-            foreach (CraftComponent component in item.ItemCraft.Components)
+            foreach (CraftComponent component in item.Craft.Components)
             {
                 if (!inventory.HasItem(component.Item, component.Count))
                 {
@@ -24,7 +24,7 @@
                 }
             }
 
-            foreach (CraftComponent component in item.ItemCraft.Components)
+            foreach (CraftComponent component in item.Craft.Components)
             {
                 inventory.RemoveItem(component.Item, component.Count);
             }

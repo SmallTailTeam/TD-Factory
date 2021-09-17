@@ -1,4 +1,5 @@
 using TdFactory.Planets.Placements;
+using TdFactory.Planets.Placements.Minerals;
 using UnityEngine;
 
 namespace TdFactory.Planets
@@ -57,6 +58,24 @@ namespace TdFactory.Planets
                 {
                     tile.SetThing<TreePlacement>();
                 }
+            }
+            
+            // Iron ore sources;
+            bool spawned = false;
+            
+            foreach (Tile tile in Tiles)
+            {
+                if (Random.Range(0f, 1f) > 99.9f/100f)
+                {
+                    tile.SetThing<IronOreSourcePlacement>();
+                    spawned = true;
+                }
+            }
+
+            if (!spawned)
+            {
+                GetTile(Random.Range(-HALF_SIZE, HALF_SIZE), Random.Range(-HALF_SIZE, HALF_SIZE))
+                    .SetThing<IronOreSourcePlacement>();
             }
             
             // BaseCore:

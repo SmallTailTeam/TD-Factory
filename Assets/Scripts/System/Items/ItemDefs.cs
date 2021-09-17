@@ -28,7 +28,28 @@ namespace TdFactory.System.Items
                 {
                     new ItemTag("BurnTime", 50)
                 },
-                ItemCraft = new ItemCraft(new CraftComponent("TdFactory/Planks", 5))
+                Craft = new ItemCraft(new CraftComponent("TdFactory/Planks", 5))
+            },
+            new Item
+            {
+                Id = "TdFactory/IronOre",
+                StackSize = 300,
+                Sprite = Resources.Load<Sprite>("Tiles/IronOreSource")
+            },
+            new Item
+            {
+                Id = "TdFactory/PrimitiveCpu",
+                StackSize = 100,
+                Sprite = Resources.Load<Sprite>("Items/PrimitiveCpu"),
+                Craft = new ItemCraft(new CraftComponent("TdFactory/IronOre", 35))
+            },
+            new ItemBuildable<PrimitiveTurretPlacement>
+            {
+                Id = "TdFactory/PrimitiveTurret",
+                StackSize = 100,
+                Sprite = Resources.Load<Sprite>("Tiles/PrimitiveTurretHead"),
+                Craft = new ItemCraft(new CraftComponent("TdFactory/PrimitiveCpu", 1),
+                    new CraftComponent("TdFactory/IronOre", 5))
             }
         };
 
