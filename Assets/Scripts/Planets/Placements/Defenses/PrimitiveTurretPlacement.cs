@@ -1,22 +1,21 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
+﻿using System;
+using System.Reflection;
 using TdFactory.Entities;
 using TdFactory.System;
 using TdFactory.UI.Windows;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TdFactory.Planets.Placements.Defenses
 {
-    public class PrimitiveTurretPlacement : Placement, IProgrammable
+    public class PrimitiveTurretPlacement : Placement
     {
-        public string Code { get; set; }
-        
         private WindowManager _windowManager;
         
         private GameObject _base;
         private GameObject _head;
         private IdeWindow _ideWindow;
-        private float _time;
+        private Turret _turret;
 
         public override void Initialize()
         {
@@ -58,31 +57,34 @@ namespace TdFactory.Planets.Placements.Defenses
             base.CleanUp();
         }
 
-        public override async void Tick()
+        public override void PhysicsTick()
         {
-            _time += Time.deltaTime;
-            
-            if (_time > 1f && !string.IsNullOrWhiteSpace(Code) && _ideWindow == null)
+            if (_ideWindow != null && !CanOpen())
             {
-                await CSharpScript.EvaluateAsync(Code, ScriptOptions.Default
-                    .WithImports(
-                        "UnityEngine",
-                        "TdFactory.Entities",
-                        "TdFactory.System.Items")
-                    .AddReferences(
-                        typeof(Debug).Assembly,
-                        typeof(PrimitiveTurretPlacement).Assembly));
-
-                _time = 0f;
+                _ideWindow.Close();
             }
         }
+        
+        public override void Tick()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && _ideWindow != null)
+            {
+                _ideWindow.Close();
+            }
 
+            if (_turret != null)
+            {
+                _turret.Tick();
+                _head.transform.rotation = Quaternion.Euler(0f, 0f, _turret.Angle);
+            }
+        }
+        
         public override void Interact(Interaction interaction)
         {
-            interaction.Primary<Player>(Open);
+            interaction.Primary<Player>(Toggle, CanOpen);
         }
 
-        private void Open(Player player)
+        private void Toggle(Player player)
         {
             if (_ideWindow != null)
             {
@@ -91,8 +93,34 @@ namespace TdFactory.Planets.Placements.Defenses
             else
             {
                 _ideWindow = _windowManager.Create<IdeWindow>("IDE");
-                _ideWindow.LinkTo(this);
+                _ideWindow.SetTitle("Primitive turret");
+                _ideWindow.Compiled += Compiled;
+                _ideWindow.Closed += () => player.EnableMovement = true;
+                player.EnableMovement = false;
             }
         }
+
+        private void Compiled(Assembly assembly)
+        {
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (Activator.CreateInstance(type) is Turret turret)
+                {
+                    _turret = turret;
+                }
+            }
+        }
+        
+        private bool CanOpen()
+        {
+            return Vector3.Distance(Player.Me.transform.position, ParentTile.transform.position) <= Tile.Distance(3);
+        }
+    }
+
+    public class Turret
+    {
+        public float Angle;
+        
+        public virtual void Tick() {}
     }
 }

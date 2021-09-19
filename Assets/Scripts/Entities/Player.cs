@@ -12,8 +12,6 @@ namespace TdFactory.Entities
         
         public Action<ItemStack> HeldItemChanged { get; set; }
 
-        [SerializeField] private float _movementSpeed;
-
         public Inventory Inventory = new Inventory(20);
         public ItemStack HeldItem
         {
@@ -25,11 +23,18 @@ namespace TdFactory.Entities
             }
         }
 
+        public bool EnableMovement { get; set; }
+
+        [SerializeField] private float _movementSpeed;
+        
         private ItemStack _heldItem;
 
         private void Awake()
         {
+            EnableMovement = true;
+            
             Me = this;
+            Inventory.AddItem(ItemDefs.Find("TdFactory/PrimitiveTurret"));
         }
 
         private void Update()
@@ -41,6 +46,11 @@ namespace TdFactory.Entities
 
         private void Move()
         {
+            if (!EnableMovement)
+            {
+                return;
+            }
+            
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 

@@ -51,7 +51,7 @@ namespace TdFactory.Planets.Placements
 
         public override void Interact(Interaction interaction)
         {
-            interaction.Primary<Player>(Open, CanOpen);
+            interaction.Primary<Player>(Toggle, CanOpen);
         }
 
         private bool CanOpen()
@@ -59,7 +59,7 @@ namespace TdFactory.Planets.Placements
             return Vector3.Distance(Player.Me.transform.position, ParentTile.transform.position) <= Tile.Distance(3);
         }
 
-        private void Open(Player player)
+        private void Toggle(Player player)
         {
             if (_craftingWindow != null)
             {
@@ -68,6 +68,8 @@ namespace TdFactory.Planets.Placements
             else
             {
                 _craftingWindow = _windowManager.Create<WorkbenchWindow>("Workbench");
+                player.EnableMovement = false;
+                _craftingWindow.Closed += () => player.EnableMovement = true;
             }
         }
     }
